@@ -1,28 +1,34 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-navigation-drawer v-model="drawer" right fixed app>
+    </v-navigation-drawer>
+    <v-toolbar dense app>
+      <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn outline ripple flat value="overview">Overview</v-btn>
+          <v-btn outline ripple flat value="class">Class</v-btn>
+      <v-divider class="mr-2" vertical></v-divider>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <v-toolbar-title>Fritzing</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+  },
+  data () {
+    return {
+      drawer: true,
+      nav: "overview"
+    }
+  },
+  methods: {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
