@@ -37,11 +37,12 @@
           <v-icon>sort</v-icon>
         </v-btn>
       </v-toolbar>
-      <v-list dense>
-        <template v-for="(item, index) in items">
+      <v-list two-line>
+        <template v-for="(item, index) in errorItems">
           <v-list-tile :key="index" avatar ripple @click="jump2Student">
             <v-list-tile-content>
               <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              <v-list-tile-sub-title class="text--primary">{{ item.headline }}</v-list-tile-sub-title>
               <v-list-tile-sub-title>{{ item.subtitle }}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-list-tile-action>
@@ -66,18 +67,21 @@ export default {
   data () {
     return {
       items: [
-        { action: '15 min', title: 'Ali Connors', subtitle: "I need peer help" },
-        { action: '2 hr', title: 'me, Scrott, Jennifer', subtitle: "How to connect the resistor." },
-        { action: '6 hr', title: 'Sandra Adams', subtitle: 'I do not know what yo are taling about?' },
-        { action: '12 hr', title: 'Trevor Hansen', subtitle: 'Have any ideas about what we should get Heidi for her birthday?' },
-        { action: '18hr', title: 'Britta Holt', subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.' },
-        { action: '18hr', title: 'Britta Holt', subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.' },
-        { action: '18hr', title: 'Britta Holt', subtitle: 'We should eat this: Grate, Squash, Corn, and tomatillo Tacos.' },
-      ]
+        { action: '2 min', title: 'Amy', subtitle: "I need peer help" },
+        { action: '15 min', title: 'Tony', subtitle: "How to connect the resistor?" },
+        { action: '30 min', title: 'Sam', subtitle: 'What is the negative side of a LED?' },
+      ],
+      errorItems: [
+        { action: '2 min', title: 'Amy', subtitle: "Drag A Wrong Component!", headline:"Level 1" },
+        { action: '15 min', title: 'Tony', subtitle: "The negative side is wrong!", headline: "Level 2"},
+        { action: '30 min', title: 'Sam', subtitle: 'Wrong Component!', headline: "Level 3" },
+      ],
+      
     }
   },
   methods: {
     jump2Student: function() {
+      this.$router.push("/single");
     }
   }
 }
