@@ -7,7 +7,7 @@
             <v-card-text>
               <span class="subheading">Amy</span>
              
-              <v-btn @click="toggleChat" color="blue" dark small absolute top right>
+              <v-btn @click="toggleChat" color="blue" dark fab small absolute top right>
                 <v-icon>chat</v-icon>
               </v-btn>              
             </v-card-text>

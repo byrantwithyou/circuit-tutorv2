@@ -5,6 +5,7 @@
     </v-navigation-drawer>
     <v-toolbar dense app>
       <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn icon @click="back"><v-icon>arrow_back</v-icon></v-btn>
           <v-divider vertical></v-divider>
           <v-btn  @click="jump2Home" ripple flat value="overview">Overview</v-btn>
           <v-divider vertical></v-divider>
@@ -38,6 +39,9 @@ export default {
     },
     jump2Student: function () {
       this.$router.push("/student");
+    },
+    back: function() {
+      this.$router.go(-1);
     }
   },
   created: function() {

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Chat</h1>
+      <v-card-actions class="bottom">
+        <v-text-field solo append-outer-icon="send"></v-text-field>
+      </v-card-actions>
   </div>
 </template>
 
