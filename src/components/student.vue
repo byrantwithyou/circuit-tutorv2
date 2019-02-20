@@ -1,29 +1,8 @@
 <template>
   <div>
-    <v-container grid-list-md>
-      <v-layout row wrap>
-        <v-flex 2>
-          <v-btn large outline flat dark color="indigo">Sort by Progress</v-btn>
-        </v-flex>
-        <v-flex 2>
-<v-select height="30"
-          :items="items"
-          solo
-          label="Select Student Status"
-          single-line
-        ></v-select>
-        </v-flex>
-        <v-spacer></v-spacer>
-        <v-btn icon @click="changeShowForm('web')"><v-icon>web</v-icon></v-btn>
-        <v-btn icon @click="changeShowForm('table')"><v-icon>dehaze</v-icon></v-btn>
-      </v-layout>
-    </v-container>
     <v-container grid-list-md fluid>
-      <v-layout wrap class="mb-5">
-          <v-toolbar dense>
-            <v-text-field hide-details prepend-icon="search" single-line></v-text-field>
-          </v-toolbar>
-      </v-layout>
+     <br>
+     <br>
       <v-data-table v-if="showForm == 'table'" :headers="headers" :items="desserts" class="elevation-1">
         <template slot="items" slot-scope="props">
           <td>{{ props.item.name }}</td>
@@ -35,93 +14,62 @@
         </template>
       </v-data-table>   
       <v-layout wrap row v-if="showForm=='web'">
+        
+        
         <v-flex xs3>
           <v-card>
             <v-card-text>
-              <span class="subheading">Tony</span>
+              <span class="subheading">Sam--Pending!!</span>
              
-              <v-btn color="blue" dark small fab absolute top right>
+              <v-btn @click="chat"  dark fab small absolute top right>
                 <v-icon>chat</v-icon>
               </v-btn>              
             </v-card-text>
-            <v-img src="bg.png"></v-img>   
-            <v-card-actions>
-              
-              <v-btn icon><v-icon>touch_app</v-icon></v-btn>
-              <v-btn icon><v-icon>thumb_up</v-icon></v-btn>
-              <v-btn icon><v-icon>add_alert</v-icon></v-btn>
-              <v-btn icon><v-icon>live_help</v-icon></v-btn>
+            <v-img src="step2.jpg"></v-img>   
+            <v-card-actions height="20px">
               <v-spacer></v-spacer>
-              <v-icon>done</v-icon>
-              <v-progress-circular :value="100" :size="20"></v-progress-circular>
+              <v-btn icon><v-icon>check</v-icon></v-btn>
+              <v-btn icon><v-icon>close</v-icon></v-btn>            
             </v-card-actions>
           </v-card>
         </v-flex>
         <v-flex xs3>
           <v-card>
             <v-card-text>
-              <span class="subheading">Amy</span>
+              <span class="subheading">John--Give FeedBack</span>
              
-              <v-btn @click="chat" color="blue" fab dark small absolute top right>
+              <v-btn @click="chat"  dark small fab absolute top right>
                 <v-icon>chat</v-icon>
               </v-btn>              
             </v-card-text>
-            <v-img src="bg.png"></v-img>   
+            <v-img src="step2.jpg"></v-img>   
             <v-card-actions>
-              <v-btn icon><v-icon>touch_app</v-icon></v-btn>
               <v-btn icon><v-icon>thumb_up</v-icon></v-btn>
-              <v-btn icon><v-icon>add_alert</v-icon></v-btn>
-              <v-btn icon @click="jumphelp"><v-icon>live_help</v-icon></v-btn>
-              <v-spacer></v-spacer>
-              <v-icon>error</v-icon>
-              <v-progress-circular :value="20" :size="20"></v-progress-circular>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-        <v-flex xs3>
-          <v-card>
-            <v-card-text>
-              <span class="subheading">Sam</span>
-             
-              <v-btn color="blue" dark fab small absolute top right>
-                <v-icon>chat</v-icon>
-              </v-btn>              
-            </v-card-text>
-            <v-img src="bg.png"></v-img>   
-            <v-card-actions>
-              <v-btn icon><v-icon>touch_app</v-icon></v-btn>
-              <v-btn icon><v-icon>thumb_up</v-icon></v-btn>
-              <v-btn icon><v-icon>add_alert</v-icon></v-btn>
-                            <v-btn icon><v-icon>live_help</v-icon></v-btn>
+              <v-btn icon><v-icon>thumb_down</v-icon></v-btn>
 
-              <v-spacer></v-spacer>
-              <v-icon>warning</v-icon>
-              <v-progress-circular :value="20" :size="20"></v-progress-circular>
             </v-card-actions>
           </v-card>
         </v-flex>
-        <v-flex xs3>
+        <v-dialog v-model="dialog">
           <v-card>
+            <v-card-title>
+              Send Text Message
+            </v-card-title>
             <v-card-text>
-              <span class="subheading">John</span>
-             
-              <v-btn color="blue" dark small fab absolute top right>
-                <v-icon>chat</v-icon>
-              </v-btn>              
+              <v-text-field
+          v-model="comment"
+          box
+          color="deep-purple"
+          label="Comment"
+          style="min-height: 96px"
+        ></v-text-field>
             </v-card-text>
-            <v-img src="bg.png"></v-img>   
             <v-card-actions>
-              <v-btn icon><v-icon>touch_app</v-icon></v-btn>
-              <v-btn icon><v-icon>thumb_up</v-icon></v-btn>
-              <v-btn icon><v-icon>add_alert</v-icon></v-btn>
-                            <v-btn icon><v-icon>live_help</v-icon></v-btn>
-
               <v-spacer></v-spacer>
-              <v-icon>pause_presentation</v-icon>
-              <v-progress-circular :value="20" :size="20"></v-progress-circular>
+              <v-btn @click="closeDialog" flat outline>Send</v-btn>
             </v-card-actions>
-          </v-card>
-        </v-flex>
+          </v-card>          
+        </v-dialog>
       </v-layout>  
     </v-container>
   </div>
@@ -134,6 +82,8 @@ export default {
   },
   data () {
     return {
+      dialog: false,
+      comment: "",
       showForm: "web",
       items: ['Running', 'Warning', 'Error', 'Done'],
       headers: [
@@ -186,7 +136,10 @@ export default {
       this.$router.push('/singleT');
     },
     chat: function() {
-      this.$router.push('/sc');
+      this.dialog = true;
+    },
+    closeDialog: function() {
+      this.dialog = false;
     }
   }
 }
